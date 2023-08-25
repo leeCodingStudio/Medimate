@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>약국 검색 메인</title>
+    <link rel="stylesheet" href="/css/main/medicine.css">
+    <link rel="stylesheet" href="/css/main/modal.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-logo">
+            <h1>MEDIMATE</h1>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li class="header-pharm">약국</li>
+                <li class="header-medicine">약</li>
+                <li class="header-calendar">캘린더</li>
+                <li class="header-announcement">공지사항</li>
+            </ul>
+        </nav>
+        <div class="header-state">
+            <ul>
+                <% if(tokenCheck){ %>
+                    <li class="header-mypage">마이페이지</li>
+                    <li class="header-logout">로그아웃</li>
+                <%}else{%>
+                    <li class="header-login">로그인</li>
+                    <li class="header-join">회원가입</li>
+                <%}%>
+            </ul>
+        </div>
+    </header>
+
+    <form action="/main/medicine" method="get" id="search"  class="search">
+        <input type="hidden" name="page" id="page">
+        <div class="search_drug">
+            <select name="M_TYPE" id="M_TYPE">
+                <option value="일반의약품" <%= M_TYPE === '일반의약품' ? 'selected' : '' %>>일반 의약품</option>
+                <option value="전문의약품" <%= M_TYPE === '전문의약품' ? 'selected' : '' %>>전문 의약품</option>
+            </select>
+            <input type="text" id="M_NAME" name="M_NAME" value="<%=M_NAME %>" placeholder="검색어를 입력하세요">
+            <button class="btn_detail1">검색</button>
+        </div>
+    </form>
+
+    <div class="search-container">
+    <% list.forEach(data => { %>
+        <div class="abc">
+            <div id="drug-info1" class="drug-info" onclick="modal2('<%= JSON.stringify(data)%>')">
+                <img src="<%= data.M_IMAGE %>" alt="img">
+                <p><%= data.M_NAME %></p>
+                <p><%= data.M_CORP %></p>
+                <p><%= data.M_NUM %></p>
+            </div>
+        </div>
+    <% }) %>
+    <div class="pagination">
+        <ul>
+            <% if (page > 1) { %>
+                <li onclick="page('<%= page - 1 %>')"><</li>
+            <% } %>
+            <% for (let i = startPage; i <= endPage; i++) { %>
+            <% if (page==i) { %>
+                <li class="active"><%= i %></li>
+            <% } else { %>
+                <li onclick="page('<%= i %>')"><%= i %></li>
+            <% } %>
+            <% } %>
+            <% if (page < totalPages) { %>
+                <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<!-- // 모달창 html 기본 display:none -->
+<div id="modal-info" class="modal">
+    <div class="modal_container">
+        <div class="modal_body1">
+            <div class="modal_img">
+                <img src="name=M_IMAGE" id="modalMimage" alt="pharm">
+            </div>
+        </div>
+        <div class="search_distribution">
+            <p>일련번호 : </p>
+            <p>제품명 : </p>
+            <p>업소명 : </p>
+            <p>구분 : </p>
+            <p>성상 : </p>
+            <p>표시앞 : </p>
+            <p>표시뒤 : </p>
+            <p>색상앞 : </p>
+            <p>색상뒤 : </p>
+            <p>제형 : </p>
+            <p>장축 : </p>
+            <p>단축 : </p>
+            <p>두께 : </p>
+        </div>
+        <div class="search_distribution_result">
+            <p><input type="text" id="modalMnum" name="M_NUM"></p>
+            <p><input type="text" id="modalMname" name="M_NAME"></p>
+            <p><input type="text" id="modalMcorp" name="M_CORP"></p>
+            <p><input type="text" id="modalMtype" name="M_TYPE"></p>
+            <p><input type="text" id="modalMshape" name="M_SHAPE"></p>
+            <p><input type="text" id="modalMmarkfront" name="M_MARK_FRONT"></p>
+            <p><input type="text" id="modalMmarkback" name="M_MARK_BACK"></p>
+            <p><input type="text" id="modalMcolorfront" name="M_COLOR_FRONT"></p>
+            <p><input type="text" id="modalMcolorback" name="M_COLOR_BACK"></p>
+            <p><input type="text" id="modalMcharacter" name="M_CHARACTER"></p>
+            <p><input type="text" id="modalMaxislong" name="M_AXIS_LONG"></p>
+            <p><input type="text" id="modalMaxisshort" name="M_AXIS_SHORT"></p>
+            <p><input type="text" id="modalMthickness" name="M_THICKNESS"></p>
+        </div>
+        <div class="close_button" id="modalMimage2" name="M_IMAGE">
+            <img src="/img/close_cursor.png" style="cursor: pointer;" alt="닫기버튼">
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function goDetail() {
+        console.log("object");
+        location.href = "/ejs/main/searchPill.html";
+    }
+</script>
+    <script src="/js/main/header.js"></script>
+    <script src="/js/main/modalInfo.js"></script>
+    <script src="/js/main/medicineDetail.js"></script>
+</body>
+</html>

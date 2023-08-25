@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>약국 검색 메인</title>
+    <link rel="stylesheet" href="/css/main/drugstore.css">
+    <link rel="stylesheet" href="/css/main/drugstore_modal.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-logo">
+            <h1>MEDIMATE</h1>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li class="header-pharm">약국</li>
+                <li class="header-medicine">약</li>
+                <li class="header-calendar">캘린더</li>
+                <li class="header-announcement">공지사항</li>
+            </ul>
+        </nav>
+        <div class="header-state">
+            <ul>
+                <% if(tokenCheck){ %>
+                    <li class="header-mypage">마이페이지</li>
+                    <li class="header-logout">로그아웃</li>
+                <%}else{%>
+                    <li class="header-login">로그인</li>
+                    <li class="header-join">회원가입</li>
+                <%}%>
+            </ul>
+        </div>
+    </header>
+    <form action="/main/drugstore" method="get" class="search" id="search">
+        <input type="hidden" name="page" id="page">
+        <div class="search_pharm">
+            <select name="P_ADDRESS" id="P_ADDRESS">
+                <option value="강남구" <%= P_ADDRESS === '강남구' ? 'selected' : '' %>>강남구</option>
+                <option value="강서구" <%= P_ADDRESS === '강서구' ? 'selected' : '' %>>강서구</option>
+                <option value="강동구" <%= P_ADDRESS === '강동구' ? 'selected' : '' %>>강동구</option>
+                <option value="강북구" <%= P_ADDRESS === '강북구' ? 'selected' : '' %>>강북구</option>
+                <option value="관악구" <%= P_ADDRESS === '관악구' ? 'selected' : '' %>>관악구</option>
+                <option value="광진구" <%= P_ADDRESS === '광진구' ? 'selected' : '' %>>광진구</option>
+                <option value="구로구" <%= P_ADDRESS === '구로구' ? 'selected' : '' %>>구로구</option>
+                <option value="금천구" <%= P_ADDRESS === '금천구' ? 'selected' : '' %>>금천구</option>
+                <option value="노원구" <%= P_ADDRESS === '노원구' ? 'selected' : '' %>>노원구</option>
+                <option value="도봉구" <%= P_ADDRESS === '도봉구' ? 'selected' : '' %>>도봉구</option>
+                <option value="동대문구" <%= P_ADDRESS === '동대문구' ? 'selected' : '' %>>동대문구</option>
+                <option value="동작구" <%= P_ADDRESS === '동작구' ? 'selected' : '' %>>동작구</option>
+                <option value="마포구" <%= P_ADDRESS === '마포구' ? 'selected' : '' %>>마포구</option>
+                <option value="서대문구" <%= P_ADDRESS === '서대문구' ? 'selected' : '' %>>서대문구</option>
+                <option value="서초구" <%= P_ADDRESS === '서초구' ? 'selected' : '' %>>서초구</option>
+                <option value="성동구" <%= P_ADDRESS === '성동구' ? 'selected' : '' %>>성동구</option>
+                <option value="성북구" <%= P_ADDRESS === '성북구' ? 'selected' : '' %>>성북구</option>
+                <option value="송파구" <%= P_ADDRESS === '송파구' ? 'selected' : '' %>>송파구</option>
+                <option value="양천구" <%= P_ADDRESS === '양천구' ? 'selected' : '' %>>양천구</option>
+                <option value="영등포구" <%= P_ADDRESS === '영등포구' ? 'selected' : '' %>>영등포구</option>
+                <option value="용산구" <%= P_ADDRESS === '용산구' ? 'selected' : '' %>>용산구</option>
+                <option value="은평구" <%= P_ADDRESS === '은평구' ? 'selected' : '' %>>은평구</option>
+                <option value="종로구" <%= P_ADDRESS === '종로구' ? 'selected' : '' %>>종로구</option>
+                <option value="중구" <%= P_ADDRESS === '중구' ? 'selected' : '' %>>중구</option>
+                <option value="중랑구" <%= P_ADDRESS === '중랑구' ? 'selected' : '' %>>중랑구</option>
+            </select>
+            <input placeholder="이름 검색" name="P_NAME" id="pharm_search" value="<%= P_NAME %>">
+            <button>검색하기</button>
+    </form>
+    </div>
+    <div class="search_container">
+        <div class="classification">
+            <div> 약국이름 </div>
+            <div> 지역 </div>
+            <div> 영업시간 </div>
+        </div>
+        <hr>
+        <br>
+        <% list.forEach(data=> { %>
+            <div class="drug-info" onclick="modal('<%= JSON.stringify(data)%>')">
+                    <div><%= data.P_NAME %> </div> 
+                    <div><%= data.P_ADDRESS %>  </div>
+                    <div><%= data.P_MON_S %> ~ <%= data.P_MON_C %></div>
+            </div>
+            <% }) %>
+    </div>
+
+    <div class="paging">
+        <ul>
+            <% if (page > 1) { %>
+                <li onclick="page('<%= page - 1 %>')"><</li>
+            <% } %>
+            
+            <% for (let i = startPage; i <= endPage; i++) { %>
+            <% if (page==i) { %>
+                <li class="active"><%= i %></li>
+            <% } else { %>
+                <li onclick="page('<%= i %>')"><%= i %></li>
+            <% } %>
+            <% } %>
+            <% if (page < totalPages) { %>
+                <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+            <% } %>
+    </ul>
+        <br>
+        <br>
+    </div>
+    </div>
+
+    <!--모달창 html 기본 display:none-->
+    <div id="modal-info" class="modal">
+        <div class="modal_body">
+            <div class="modal_header close_button"><img src="/img/close_cursor.png" alt="닫기버튼"
+                    style="width:40px; height: 40px;">
+            </div>
+            <div class="modal_container">
+                <div id="map"></div>
+                <div class="modal_body1">
+                    <li>약국번호 :</li>
+                    <li>약국명 :</li>
+                    <li>주소 :</li>
+                    <li>대표 전화 :</li>
+                </div>
+
+                <div class="modal_body2">
+                    <li><input type="text" id="modalPnum" name="P_NUM"></li>
+                    <li><input type="text" id="modalPname" name="P_NAME"></li>
+                    <li><input type="text" id="modalPaddress" name="P_ADDRESS"></li>
+                    <li><input type="text" id="modalPphone" name="P_PHONE"></li>
+                </div>
+            </div>
+            <div class="modal_container">
+                <div class="modal_body3">
+                    <ul>
+                        <li>월요일 : </li>
+                        <li>화요일 : </li>
+                        <li>수요일 : </li>
+                        <li>목요일 : </li>
+                        <li>금요일 : </li>
+                        <li>토요일 : </li>
+                        <li>일요일 : </li>
+                        <li>공휴일 : </li>
+                    </ul>
+                </div>
+                <div class="modal_body4">
+                    <p><input class="day_data" type="text" name="P_MON_S" id="modalPmons"> ~ <input class="day_data" type="text" name="P_MON_C"id="modalPmonc"></p>
+
+                    <p><input class="day_data" type="text" name="P_TUE_S" id="modalPtues"> ~ <input class="day_data" type="text" name="P_TUE_C"id="modalPtuec"></p>
+
+                    <p><input class="day_data" type="text" name="P_WED_S" id="modalPweds"> ~ <input class="day_data" type="text" name="P_WED_C"id="modalPwedc"></p>
+
+                    <p><input class="day_data" type="text" name="P_THU_S" id="modalPthus"> ~ <input class="day_data" type="text" name="P_THU_C"
+                            id="modalPthuc"></p>
+
+                    <p><input class="day_data" type="text" name="P_FRI_S" id="modalPfris"> ~ <input class="day_data" type="text" name="P_FRI_C"
+                            id="modalPfric"></p>
+
+                    <p><input class="day_data" type="text" name="P_SAT_S" id="modalPsats"> ~ <input class="day_data" type="text" name="P_SAT_C"
+                            id="modalPsatc"></p>
+                    <p><input class="day_data" type="text" name="P_SUN_S" id="modalPsuns"> ~ <input class="day_data" type="text" name="P_SUN_C"
+                            id="modalPsunc"></p>
+                    <p><input class="day_data" type="text" name="P_HOLI_S" id="modalPholis"> ~ <input class="day_data" type="text" name="P_HOLI_C"
+                            id="modalPholic"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9c531d4938c9e9be44937acdc74c9589"></script>
+    <script src="/js/main/header.js"></script>
+    <script src="/js/main/drugDetail.js"></script>
+</body>
+</html>

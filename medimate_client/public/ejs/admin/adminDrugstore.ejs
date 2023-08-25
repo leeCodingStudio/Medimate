@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/admindrugstore.css">
+    <title>약국관리</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+<body>
+    <header>
+        <i class="fa-solid fa-bars"></i>
+        관리자 홈
+    </header>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;"><h1>MEDIMATE</h1></div>
+        <ul>
+            <li class="nav-user"><i class="fa-solid fa-users"></i> 회원 관리</li>
+            <li class="nav-drugstore active"><i class="fa-solid fa-house-medical"></i> 약국 관리</li>
+            <li class="nav-medicine"><i class="fa-solid fa-prescription-bottle-medical"></i> 약품 관리</li>
+            <li class="nav-announcement"><i class="fa-solid fa-scroll"></i> 공지 사항</li>
+            <li class="nav-QnA"><i class="fa-solid fa-comments"></i> 문의 사항</li>
+        </ul>
+    </nav>
+
+    <main>
+        <article class="title">
+            <h2>약국관리</h2>
+            <form action="/admin/drugstore" method="get" class="search" id="search">
+                <input type="hidden" name="page" id="page">
+                <input class="searchbar" type="text" name="P_NAME" placeholder="약국명으로 검색" value="<%= P_NAME %>">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </article>
+        <article class="list">
+            <div class="list-title">
+                <ul>
+                    <li class="row-1">약국아이디</li>
+                    <li class="row-2">약국명</li>
+                    <li class="row-3">주소</li>
+                    <li class="row-1">비고</li>
+                </ul>
+            </div>
+            <% list.forEach(data => { %>
+            <div class="list-info">
+                <ul>
+                    
+                    <li class="row-1"><%= data.P_NUM %></li>
+                    <li class="row-2"><%= data.P_NAME %></li>
+                    <li class="row-3">	
+                        <%= data.P_ADDRESS %></li>
+                    <li class="row-1">
+                        <input type="hidden" name= "data">
+                        <button class="info-btn" onclick="modal('<%= JSON.stringify(data)%>')">상세보기</button>
+                    </li>
+                </ul>
+            </div>
+            <% }) %> 
+            
+            <div class="pagination">
+                <ul>
+                    <% if (page > 1) { %>
+                        <li onclick="page('<%= page - 1 %>')"><</li>
+                    <% } %>
+                    
+                    <% for (let i = startPage; i <= endPage; i++) { %>
+                    <% if (page==i) { %>
+                        <li class="active"><%= i %></li>
+                    <% } else { %>
+                        <li onclick="page('<%= i %>')"><%= i %></li>
+                    <% } %>
+                    <% } %>
+                    <% if (page < totalPages) { %>
+                        <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="write-btn">
+                <button id="write-btn">약국등록</button>
+            </div>
+        </article>
+    </main>
+
+    <div class="modal" id="modal-info">
+        <div class="modal-box">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="/admin/drugstore/update" method="post">
+                <div class="modal-title">
+                    <h3>상세 약국 정보</h3>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-left">
+                        <div class="modal-info">
+                            <div>약국아이디</div>
+                            <input type="text" name="P_NUM" id="modalPnum" readonly>
+                        </div>
+                        <div class="modal-info">
+                            <div>약국명</div>
+                            <input type="text" name="P_NAME" id="modalPname" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>대표전화</div>
+                            <input type="text" name="P_PHONE" id="modalPphone" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>위도</div>
+                            <input type="text" name="P_LATI" id="modalPlati" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>경도</div>
+                            <input type="text" name="P_LONGI" id="modalPlongi" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>주소</div>
+                        </div>
+                        <div class="modal-info">
+                            <textarea name="P_ADDRESS" id="modalPaddress" cols="40" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-right">
+                        <div class="modal-info">
+                            <div>월요일</div>
+                            <div>
+                                <input type="text" name="P_MON_S" id="modalPmons" required> ~ <input type="text" name="P_MON_C" id="modalPmonc" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>화요일</div>
+                            <div>
+                                <input type="text" name="P_TUE_S" id="modalPtues" required> ~ <input type="text" name="P_TUE_C" id="modalPtuec" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>수요일</div>
+                            <div>
+                                <input type="text" name="P_WED_S" id="modalPweds" required> ~ <input type="text" name="P_WED_C" id="modalPwedc" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>목요일</div>
+                            <div>
+                                <input type="text" name="P_THU_S" id="modalPthus" required> ~ <input type="text" name="P_THU_C" id="modalPthuc" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>금요일</div>
+                            <div>
+                                <input type="text" name="P_FRI_S" id="modalPfris" required> ~ <input type="text" name="P_FRI_C" id="modalPfric" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>토요일</div>
+                            <div>
+                                <input type="text" name="P_SAT_S" id="modalPsats" required> ~ <input type="text" name="P_SAT_C" id="modalPsatc" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>일요일</div>
+                            <div>
+                                <input type="text" name="P_SUN_S" id="modalPsuns" required> ~ <input type="text" name="P_SUN_C" id="modalPsunc" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>공휴일</div>
+                            <div>
+                                <input type="text" name="P_HOLI_S" id="modalPholis" required> ~ <input type="text" name="P_HOLI_C" id="modalPholic" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="submit-btn">
+                    <button type="submit" class="black-btn">수정</button>
+                    <button type="button" class="red-btn" onclick="remove()">삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-write">
+        <div class="modal-box">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="/admin/drugstore" method="post">
+                <div class="modal-title">
+                    <h3>약국 등록</h3>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-left">
+                        <div class="modal-info">
+                            <div>약국아이디</div>
+                            <input type="text" name="P_NUM" placeholder="약국아이디를 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>약국명</div>
+                            <input type="text" name="P_NAME"  placeholder="약국명을 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>대표전화</div>
+                            <input type="text"name="P_PHONE" placeholder="대표전화를 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>위도</div>
+                            <input type="text" name="P_LATI" placeholder="위도를 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>경도</div>
+                            <input type="text" name="P_LONGI" placeholder="경도를 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>주소</div>
+                        </div>
+                        <div class="modal-info">
+                            <textarea name="P_ADDRESS" cols="40" rows="5" placeholder="주소를 입력하세요" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-right">
+                        <div class="modal-info">
+                            <div>월요일</div>
+                            <div>
+                                <input type="text" name="P_MON_S" placeholder="시작시간" required> ~ <input type="text" name="P_MON_C" placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>화요일</div>
+                            <div>
+                                <input type="text"name="P_TUE_S" placeholder="시작시간" required> ~ <input type="text" name="P_TUE_C" placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>수요일</div>
+                            <div>
+                                <input type="text" name="P_WED_S" placeholder="시작시간" required> ~ <input type="text" name="P_WED_C"  placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>목요일</div>
+                            <div>
+                                <input type="text" name="P_THU_S"  placeholder="시작시간" required> ~ <input type="text" name="P_THU_C"  placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>금요일</div>
+                            <div>
+                                <input type="text" name="P_FRI_S"  placeholder="시작시간" required> ~ <input type="text" name="P_FRI_C" placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>토요일</div>
+                            <div>
+                                <input type="text" name="P_SAT_S"  placeholder="시작시간" required> ~ <input type="text" name="P_SAT_C"  placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>일요일</div>
+                            <div>
+                                <input type="text" name="P_SUN_S" placeholder="시작시간" required> ~ <input type="text" name="P_SUN_C"  placeholder="마감시간" required>
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>공휴일</div>
+                            <div>
+                                <input type="text" name="P_HOLI_S"  placeholder="시작시간" required> ~ <input type="text" name="P_HOLI_C" placeholder="마감시간" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="submit" class="black-btn">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+    <script src="../../js/admin/modalInfo.js"></script>
+    <script src="../../js/admin/admin.js"></script>
+    <script src="../../js/admin/modalWrite.js"></script>
+    <script src="../../js/admin/drugDetail.js"></script>
+</body>
+</html>
+<% } %>

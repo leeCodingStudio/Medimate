@@ -1,0 +1,23 @@
+.modal-box{
+    width: 800px;
+    height: 550px;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-left, .modal-right{
+    width: 400px;
+}
+
+.modal-right input{
+    width: 100px;
+}
+
+.submit-btn{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/adminmedicine.css">
+    <title>약품관리</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+
+<body>
+    <header>
+        <i class="fa-solid fa-bars"></i>
+        관리자 홈
+    </header>
+
+    <nav>
+        <div class="logo">
+            <h1>MEDIMATE</h1>
+        </div>
+        <ul>
+            <li class="nav-user"><i class="fa-solid fa-users"></i> 회원 관리</li>
+            <li class="nav-drugstore"><i class="fa-solid fa-house-medical"></i> 약국 관리</li>
+            <li class="nav-medicine active"><i class="fa-solid fa-prescription-bottle-medical"></i> 약품 관리</li>
+            <li class="nav-announcement"><i class="fa-solid fa-scroll"></i> 공지 사항</li>
+            <li class="nav-QnA"><i class="fa-solid fa-comments"></i> 문의 사항</li>
+        </ul>
+    </nav>
+
+    <main>
+        <article class="title">
+            <h2>약품관리</h2>
+            <form action="/admin/medicine" method="get" class="search" id="search">
+                <input type="hidden" name="page" id="page">
+                <input type="text" name="M_NAME" placeholder="약품명으로 검색" value="<%= M_NAME %>">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </article>
+        <article class="list">
+            <div class="list-title">
+                <ul>
+                    <li class="row-1">일련번호</li>
+                    <li class="row-2">약품명</li>
+                    <li class="row-1">업소명</li>
+                    <li class="row-1">구분</li>
+                    <li class="row-1">비고</li>
+                </ul>
+            </div>
+            <% drugList.forEach(medicine=> {
+                %>
+                <div class="list-info">
+                    <ul>
+                        <li class="row-1">
+                            <%= medicine.M_NUM %>
+                        </li>
+                        <li class="row-2">
+                            <%= medicine.M_NAME %>
+                        </li>
+                        <li class="row-1">
+                            <%= medicine.M_CORP %>
+                        </li>
+                        <li class="row-1">
+                            <%= medicine.M_TYPE %>
+                        </li>
+                        <li class="row-1"><button class="info-btn"
+                                onclick="modal('<%= JSON.stringify(medicine)%>')">상세보기</button></li>
+                    </ul>
+                </div>
+                <% }) %>
+
+                    <div class="pagination">
+                        <ul>
+                            <% if (page > 1) { %>
+                                <li onclick="page('<%= page - 1 %>')"><</li>
+                            <% } %>
+                            
+                            <% for (let i = startPage; i <= endPage; i++) { %>
+                            <% if (page==i) { %>
+                                <li class="active"><%= i %></li>
+                            <% } else { %>
+                                <li onclick="page('<%= i %>')"><%= i %></li>
+                            <% } %>
+                            <% } %>
+                            <% if (page < totalPages) { %>
+                                <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="write-btn">
+                        <button id="write-btn">약품등록</button>
+                    </div>
+        </article>
+    </main>
+
+    <div class="modal" id="modal-info">
+        <div class="modal-box">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="/admin/medicine/update" method="post" enctype="multipart/form-data">
+                <div class="modal-title">
+                    <h3>상세 약품 정보</h3>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-left">
+                        <div class="modal-info">
+                            <input type="file" name="M_IMAGE">
+                        </div>
+                        <div class="modal-info">
+                            <img id="modalMimage" src="" alt="">
+                        </div>
+                        <div class="modal-info">
+                            <div>품목명</div>
+                            <input type="text" id="modalMname" name="M_NAME" value="가스디알정50밀리그램(디메크로틴산마그네슘)" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>일련번호</div>
+                            <input type="text" id="modalMnum" name="M_NUM" value="200808876" readonly>
+                        </div>
+                        <div class="modal-info">
+                            <div>업소명</div>
+                            <input type="text" id="modalMcorp" name="M_CORP" value="일동제약(주)" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>구분</div>
+                            <div class="modal-radio">
+                                <input type="radio" id="radio1" name="M_TYPE" value="일반의약품">일반
+                                <input type="radio" id="radio2" name="M_TYPE" value="전문의약품">전문
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-right">
+                        <div class="modal-info">
+                            <div>성상</div>
+                            <div>
+                                <input type="text" id="modalMshape" name="M_SHAPE" value="녹색의 원형 필름코팅정">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>등록일자</div>
+                            <div>
+                                <input type="text" value="20080820">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>표시앞</div>
+                            <div>
+                                <input type="text" id="modalMmarkfront" name="M_MARK_FRONT" value="IDG">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>표시뒤</div>
+                            <div>
+                                <input type="text" id="modalMmarkback" name="M_MARK_BACK" value="">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>색상앞</div>
+                            <div>
+                                <input type="text" id="modalMcolorfront" name="M_COLOR_FRONT" value="연두">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>색상뒤</div>
+                            <div>
+                                <input type="text" id="modalMcolorback" name="M_COLOR_BACK" value="">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>제형</div>
+                            <div>
+                                <input type="text" id="modalMcharacter" name="M_CHARACTER" value="원형">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>장축</div>
+                            <div>
+                                <input type="text" id="modalMaxislong" name="M_AXIS_LONG" value="7.6">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>단축</div>
+                            <div>
+                                <input type="text" id="modalMaxisshort" name="M_AXIS_SHORT" value="7.6">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>두께</div>
+                            <div>
+                                <input type="text" id="modalMthickness" name="M_THICKNESS" value="3.6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="submit" class="black-btn">수정</button>
+                    <button type="button" class="red-btn" onclick="remove()">삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="modal-write">
+        <div class="modal-box">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="/admin/medicine" method="post" enctype="multipart/form-data">
+                <div class="modal-title">
+                    <h3>약품 등록</h3>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-left">
+                        <div class="modal-info">
+                            <input type="file" name="M_IMAGE">
+                        </div>
+                        <div class="modal-info">
+                            <img name="M_IMAGE" src="" alt="">
+                        </div>
+                        <div class="modal-info">
+                            <div>품목명</div>
+                            <input type="text" name="M_NAME" placeholder="품목명을 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>일련번호</div>
+                            <input type="text" name="M_NUM" placeholder="일련번호를 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>업소명</div>
+                            <input type="text" name="M_CORP" placeholder="업소명을 입력하세요" required>
+                        </div>
+                        <div class="modal-info">
+                            <div>구분</div>
+                            <div class="modal-radio">
+                                <input type="radio" name="M_TYPE" value="일반의약품" checked>일반
+                                <input type="radio" name="M_TYPE" value="전문의약품">전문
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-right">
+                        <div class="modal-info">
+                            <div>성상</div>
+                            <div>
+                                <input type="text" name="M_SHAPE" placeholder="성상을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>표시앞</div>
+                            <div>
+                                <input type="text" name="M_MARK_FRONT" placeholder="앞표시를 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>표시뒤</div>
+                            <div>
+                                <input type="text" name="M_MARK_BACK" placeholder="뒤표시를 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>색상앞</div>
+                            <div>
+                                <input type="text" name="M_COLOR_FRONT" placeholder="앞색상을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>색상뒤</div>
+                            <div>
+                                <input type="text" name="M_COLOR_BACK" placeholder="뒤색상을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>제형</div>
+                            <div>
+                                <input type="text" name="M_CHARACTER" placeholder="제형을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>장축</div>
+                            <div>
+                                <input type="text" name="M_AXIS_LONG" placeholder="장축을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>단축</div>
+                            <div>
+                                <input type="text" name="M_AXIS_SHORT" placeholder="단축을 입력하세요">
+                            </div>
+                        </div>
+                        <div class="modal-info">
+                            <div>두께</div>
+                            <div>
+                                <input type="text" name="M_THICKNESS" placeholder="두께를 입력하세요">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="submit" class="black-btn">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="/js/admin/modalInfo.js"></script>
+    <script src="/js/admin/modalWrite.js"></script>
+    <script src="/js/admin/medicineDetail.js"></script>
+</body>
+
+</html>
+<% } %>

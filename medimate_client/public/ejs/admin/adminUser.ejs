@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/adminUser.css">
+    <title>회원관리</title>
+    <% if(typeof message !== 'undefined'){%>
+    <script>
+        alert("<%= message %>");
+        history.back();
+    </script>
+    <% }else{ %>
+</head>
+<body>
+    <header>
+        <i class="fa-solid fa-bars"></i>
+        관리자 홈
+    </header>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;"><h1>MEDIMATE</h1></div>
+        <ul>
+            <li class="nav-user active"><i class="fa-solid fa-users"></i> 회원 관리</li>
+            <li class="nav-drugstore"><i class="fa-solid fa-house-medical"></i> 약국 관리</li>
+            <li class="nav-medicine"><i class="fa-solid fa-prescription-bottle-medical"></i> 약품 관리</li>
+            <li class="nav-announcement"><i class="fa-solid fa-scroll"></i> 공지 사항</li>
+            <li class="nav-QnA"><i class="fa-solid fa-comments"></i> 문의 사항</li>
+        </ul>
+    </nav>
+
+    <main> <!-- 주요 컨텐츠 담는 부분 -->
+        <article class="title">  
+            <h2>회원관리</h2>
+            <form action="/admin/user" method="get" class="search" id="search">
+                <input type="hidden" name="page" id="page">
+                <input type="text" name="U_NAME" placeholder="이름으로 검색" value="<%= U_NAME %>">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </article>
+        <article class="list"> <!-- 회원 목록 나타내는 부분 -->
+            <div class="list-title">
+                <ul>
+                    <li class="row-1">회원번호</li>
+                    <li class="row-1">아이디</li>
+                    <li class="row-1">이름</li>
+                    <li class="row-2">이메일</li>
+                    <li class="row-1">비고</li>
+                </ul>
+            </div>
+            <% 
+            if(list){
+                list.forEach(user => {
+            %>
+            <div class="list-info">
+                <ul>
+                    <li class="row-1"><%= user.U_NUM %></li>
+                    <li class="row-1"><%= user.U_ID %></li>
+                    <li class="row-1"><%= user.U_NAME %></li>
+                    <li class="row-2"><%= user.U_EMAIL %></li>
+                    <li class="row-1">
+                        <button class="info-btn" onclick="modal('<%= JSON.stringify(user) %>')">상세보기</button>
+                    </li>
+                </ul>
+            </div>
+            <% })} %>
+            <div class="pagination">
+                <ul>
+                    <% if (page > 1) { %>
+                        <li onclick="page('<%= page - 1 %>')"><</li>
+                    <% } %>
+                    
+                    <% for (let i = startPage; i <= endPage; i++) { %>
+                    <% if (page==i) { %>
+                        <li class="active"><%= i %></li>
+                    <% } else { %>
+                        <li onclick="page('<%= i %>')"><%= i %></li>
+                    <% } %>
+                    <% } %>
+                    <% if (page < totalPages) { %>
+                        <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+                    <% } %>
+                </ul>
+            </div>
+        </article>
+    </main>
+    <div class="modal" id="modal-info">
+        <div class="modal-box">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="/admin/user/update" method="post">
+                <div class="modal-title">
+                    <h3>상세 회원 정보</h3>
+                </div>
+                <div class="modal-info">
+                    <div>회원번호</div>
+                    <input type="text" id="modalUNum" name="U_NUM">
+                </div>
+                <div class="modal-info">
+                    <div>아이디</div>
+                    <input type="text" id="modalUId" name="U_ID">
+                </div>
+                <div class="modal-info">
+                    <div>이름</div>
+                    <input type="text" id="modalUName" name="U_NAME">
+                </div>
+                <div class="modal-info">
+                    <div>이메일</div>
+                    <input type="text" id="modalUEmail" name="U_EMAIL">
+                </div>
+                <div class="modal-info">
+                    <div>전화번호</div>
+                    <input type="text" id="modalUHp" name="U_HP">
+                </div>
+                <div class="submit-btn">
+                    <button type="submit" class="black-btn">수정</button>
+                    <button type="button" class="red-btn" onclick="remove()">삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="/js/admin/modalInfo.js"></script>
+    <script src="/js/admin/adminUser.js"></script>
+</body>
+</html>
+<% } %>

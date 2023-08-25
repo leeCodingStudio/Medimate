@@ -1,0 +1,151 @@
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+*{
+    font-family: 'bitbit';
+}
+
+/* 바디 */
+body {
+font-family: "medimate";  
+}
+
+/* 현준이가 전달해준 메인 바 코드 */
+li {
+    list-style: none;
+}
+
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+
+header ul, header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo  h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+input {
+    padding: 7px;
+    margin: 10px;
+    border-radius: 7px;
+}
+
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+
+/* container */
+.container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);    /* 박스를 가운데에 맞춰주기*/
+    width: 450px;
+    height: 50rem;
+    margin: auto;
+
+    /* 로그인 내부 요소들?을 로그인 박스 안에서 가운데에 정렬하기 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+}
+
+/* 작은 container들 */
+.findId {
+    margin: 3rem auto;
+}
+
+.findPw {
+    margin: 3rem auto;
+}
+
+/* id, pw찾기 text */
+.findId h2, .findPw h2{
+    text-align: center;
+    margin: 0 auto;
+    width: 200px;
+    color: #53d36b;
+    font: bold;
+}
+.findId p, .findPw p{
+    text-align: left;
+    font: bold;
+}
+.findPw h2{
+    padding-top: 3rem;
+}
+.findId_name{
+    margin-left: 15px;
+}
+
+/* 버튼 */
+
+button {
+    width: 35%;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    background-color: #53d36b;
+    border: 1px solid  #53d36b;
+    border-radius: 10deg;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 13%;
+    text-align: center;
+    line-height: 1.3rem;
+    padding: 10px;
+}
+
+.find_btn{
+    text-align: center;
+    justify-content: center;
+}

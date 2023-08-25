@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/announcement-content.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                    <%}else{%>
+                        <li class="header-login">로그인</li>
+                        <li class="header-join">회원가입</li>
+                    <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+
+
+    <div class="container">
+        <div class="content-title">
+            <p class="title1">제목: <%= A_TITLE %></p>
+            <p class="title2">작성자: <%= U_NAME %></p>
+            <p class="title3">작성일자: <%= A_DATE.slice(0,10) %></p>
+        </div>
+        <br>
+        <div class="annc-content">
+            <%= A_CONTENT %>
+        </div>
+
+        <div class="content-btn">
+            <button onclick="history.back()">뒤로가기</button>
+        </div>
+
+    </div>
+    <script src="/js/main/header.js"></script>
+    <script type="text/javascript">
+        function gopageInfo() {
+            location.href = "/main/mypage/info";    
+        }
+        function gopagePw() {
+            location.href = "/main/mypage/pw";    
+        }
+        function gopageQnA() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageShare() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageWithdrawal() {
+            location.href = "/main/mypage/withdrawal";    
+        }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
+*{
+    font-family: 'bitbit';
+}
+
+p{
+    margin: 0;
+}
+
+li{
+    list-style: none;
+}
+
+
+/* 헤더 */
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+header ul,
+header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+
+input {
+    margin-left: 20px;
+    border: 1px solid #53d36b;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 중간 부분 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    flex-direction: column;
+}
+.annc-search{
+    width: 55rem;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 8rem;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+.annc-search input{
+    width: 40rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+.annc-content{
+    width: 55rem;
+    margin-top: 3rem;
+}
+.annc-content p{
+    padding-top: 1rem;  
+    margin: 0 ;
+}
+.content-title{
+    border-bottom: 1px solid #53d36b;
+    padding-bottom: 1rem;
+}
+.annc-pgnum{
+    margin-top: 3rem;
+}
+.content-title, .content2, .content3, .content4, .content5, .content6{
+    display: flex;
+    margin: 0;
+    justify-content: left;
+
+}
+
+.annc-pgnum{
+    display: flex;
+}
+.pgnum1, .pgnum2, .pgnum3, .pgnum4, .pgnum5, .pgnum6{
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+/* 버튼 */
+button {
+    margin-left: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #53d36b;
+    border: 1px solid #53d36b;
+    border-radius: 10deg;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 13%;
+    text-align: center;
+    line-height: 1rem;
+    padding: 10px;
+}
+
+/* 임시 */
+.content-title, .content2 {
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+
+/* 페이지네이션 */
+
+.annc-pgnum {
+    font-size: 14px;
+    padding: 2rem;
+}
+
+.paging ul {
+    justify-content: center;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+.pgnum1, .pgnum2, .pgnum3, .pgnum4, .pgnum5, .pgnum6 {
+    list-style: none;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 30%;
+    border: 1px solid #59606c;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.pgnum1:hover, .pgnum2:hover, .pgnum3:hover, .pgnum4:hover, .pgnum5:hover, .pgnum6:hover,
+.pgnum1:active, .pgnum2:active, .pgnum3:active, .pgnum4:active, .pgnum5:active, .pgnum6:active {
+    background-color: #333f50;
+    color: white;
+}
+
+/* 페이징 */
+.pagination {
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+}
+
+.pagination ul{
+    justify-content: center;
+    display: flex;
+}
+
+.pagination li{
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 30%;
+    border: 1px solid #59606c;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.pagination li:hover, .pagination li.active{
+    background-color: #333f50;
+    color: white;
+}

@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'medimate';
+    src: url('./fonts/DNFBitBitOTF.woff') format('woff');
+font-weight: 700;
+font-style: normal;
+}
+
+
+body {
+    width: 100%;
+    font-family: "medimate";  
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    padding: 5px 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 5px 0 rgb(155, 155, 155);
+    z-index: 100;
+}
+
+
+header ul, header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo  h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+    font-weight: bold;
+}
+input {
+    margin-left: 20px;
+    border: 1px solid #53d36b;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 왼쪽 사이드바 */
+.sidebar-left {
+    display: inline;
+    border: 3px solid #53d36b;
+    margin-top: 15rem;
+    width: 180px;
+    height: 20rem;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+}
+.sidebar-left-list   {
+    width: 100%;
+    padding: 10px;  
+}
+.sidebar-left-list button {
+    font-family: 'bitbit'; 
+    position: relative;
+    right: 10px;
+    width: 80%;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    font-weight: bolder;
+    border-radius: 13%;
+}
+.sidebar-left-list li :hover  {
+    background-color: #53d36b;
+    color: white;
+    font-size: 17px;
+    font-weight: bolder;
+}
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 회원정보수정 소제목 */
+.small-title {
+    border-bottom: 3px solid #53d36b;
+    margin-bottom: 60px;
+}
+
+/* 내용 틀 */
+.container-share {
+    display: inline-block;
+    border: none;
+    padding: 20px;
+    width: 700px;
+    margin-top: 10rem;
+}
+
+/* 공유상황 텍스트에어리어 */
+.situation-share{
+    display: flex;
+}
+.shared{
+    margin-left: 40px;
+}
+.shared p{
+    margin-left: 40px;
+}
+
+/* 맨아래 버튼 */
+.button-share {
+    text-align: center;
+    margin-top: 3rem;
+    margin-right: 3rem;
+}
+
+button {
+    margin-left: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #53d36b;
+    border: 1px solid  #53d36b;
+    border-radius: 10deg;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 13%;
+    line-height: 17px;
+    padding: 10px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+}

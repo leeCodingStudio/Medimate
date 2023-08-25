@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/announcement.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                    <%}else{%>
+                        <li class="header-login">로그인</li>
+                        <li class="header-join">회원가입</li>
+                    <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+
+        <div class="annc-search">
+            <form action="/main/announcement" method="get" class="search" id="search">
+                <input type="hidden" name="page" id="page">
+                <input type="text" name="A_TITLE" placeholder="이름검색" value="<%= A_TITLE %>">
+                <button type="submit">검색하기</button>
+            </form>
+        </div>
+
+        <div class="annc-content">
+            <div class="content-title">
+                <p class="list-qna-num">번호</p>
+                <p class="list-qna-title">제목</p>
+                <p class="list-qna-date">일자</p>
+            </div>
+            <% datas.forEach(data=> {%>
+                <div class="content2" onclick="noticeD('<%= data.A_NUM %>')"> 
+                    <p class="list-qna-num" >
+                        <%= data.A_NUM %></p>
+                    <p class="list-qna-title">
+                        <%= data.A_TITLE %></p>
+                    <p class="list-qna-date">
+                        <%= data.A_DATE.slice(0,10) %></p>
+                </div>
+            <% }) %>
+        </div>
+        <div class="pagination">
+            <ul>
+                <% if (page > 1) { %>
+                    <li onclick="page('<%= page - 1 %>')"><</li>
+                <% } %>
+                <% for (let i = startPage; i <= endPage; i++) { %>
+                <% if (page==i) { %>
+                    <li class="active"><%= i %></li>
+                <% } else { %>
+                    <li onclick="page('<%= i %>')"><%= i %></li>
+                <% } %>
+                <% } %>
+                <% if (page < totalPages) { %>
+                    <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const contents = document.querySelectorAll(".content2");
+        contents.forEach(content => {   
+            content.addEventListener('click', () => {
+                location.href = `/main/announcement-content/${A_NUM.value}`;
+            });
+        });
+    </script>
+    <script src="/js/main/header.js"></script>
+    <script src="/js/main/announcement.js"></script>
+    <script src="/js/main/announcement-content"></script>
+</body>
+
+</html>

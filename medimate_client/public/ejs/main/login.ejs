@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메디메이트 로그인</title>
+    <link rel="stylesheet" href="/css/main/login.css">
+</head>
+
+<body>
+    <!-- 헤더 -->
+
+    <% if(!fail){ %>
+        <script>alert('로그인 실패했습니다. 아이디 비밀번호를 확인해주세요.')</script>
+        <% }else if(!okjoin) { %>
+            <script>alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.')</script>
+            <% } %>
+                <header>
+                    <div class="header-logo">
+                        <h1>MEDIMATE</h1>
+                    </div>
+                    <nav class="header-nav">
+                        <ul>
+                            <li class="header-pharm">약국</li>
+                            <li class="header-medicine">약</li>
+                            <li class="header-calendar">캘린더</li>
+                            <li class="header-announcement">공지사항</li>
+                        </ul>
+                    </nav>
+                    <div class="header-state">
+                        <ul>
+                            <% if(tokenCheck){ %>
+                                <li class="header-mypage">마이페이지</li>
+                                <li class="header-logout">로그아웃</li>
+                            <%}else{%>
+                                <li class="header-login">로그인</li>
+                                <li class="header-join">회원가입</li>
+                            <%}%>
+                        </ul>
+                    </div>
+                </header>
+
+                <!-- 로그인 박스 -->
+                <div class="box">
+                    <div class="login">
+                        <div class="login-n">로그인</div>
+
+                        <form action="/main/login" method="post">
+                            아이디: <input type="text" name="U_ID" id="U_ID" placeholder="아이디를 입력하세요" required><br>
+                            비밀번호: <input type="password" name="U_PW" id="U_PW" placeholder="비밀번호를 입력하세요" required><br>
+                            <a href="/main/find">아이디 찾기 / 비밀번호 찾기</a><br><br>
+                            <button type="submit" class="btn">로그인</button>
+                        </form>
+                        <button class="join-btn">회원가입</button>
+                    </div>
+                </div>
+                <script scr="header.js"></script>
+
+                <script>
+                    const joinbtn = document.querySelector(".join-btn");
+
+                    joinbtn.addEventListener(('click'), () => {
+                        location.href = "/main/join";
+                    });
+                </script>
+
+
+                <script src="/js/main/header.js"></script>
+</body>
+
+</html>

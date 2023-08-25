@@ -1,0 +1,308 @@
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
+*{
+    font-family: 'bitbit';
+}
+
+
+/* 헤더 */
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+header ul,
+header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+
+/*검색 헤더 */
+
+.search_drug{
+    position: flex;
+    flex-wrap: nowrap;
+    height: 3.8rem;
+    letter-spacing: .1rem;
+    line-height: 3.8rem;
+    padding: 0 3rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: darkgrey;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    width: 80%;
+    margin: 5rem auto;
+    align-items: center;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 15px;
+}
+
+.search_drug select, .search_drug input{
+    display: inline-block;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0 35px;
+    font-size: 1rem;
+    color: black;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 178px;
+    cursor: pointer;
+}
+
+
+.search_drug > button{
+    display: inline-block;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0 35px;
+    font-size: 1rem;
+    background-color: #495f74;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 178px;
+    cursor: pointer;
+}
+
+/*검색 창 */
+
+
+.map {
+    width: 1000px;
+    height: 800px;
+    margin: 5% auto;
+
+}
+
+
+.search_container{
+    position: flex;
+    flex-wrap: nowrap;
+    display: inline-block;
+    justify-content: center;
+    margin-left: 7px;
+}
+
+
+.classification{
+    display: inline-block;
+    position: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    
+}
+
+.classification > h3{
+    display: inline-block;
+    margin-right: 4rem;
+}
+
+.column{
+    display: inline-block;
+    margin-right: 4rem;
+}
+
+.data{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+
+.paging {
+    text-align: center;
+}
+
+.paging li{
+    display: inline-block;
+    min-width: 27px;
+    height: 55px;
+    font-size: 1rem;
+    line-height: 55px;
+    color: grey;
+    vertical-align: top;
+    text-decoration: none;
+}
+
+.next-paging{
+    border: 1px solid navy;
+    border-radius: 50%;
+}
+
+
+/*모달창*/
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 300;
+}
+
+.modal.show {
+    display: block;
+}
+
+/*모달 창 전체 */
+.modal_body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 400px;
+    height: 600px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/*닫기 버튼*/
+.modal_header{
+    width: 400px;
+    height: 50px;
+    text-align: end;
+    cursor: pointer;
+}
+
+.modal_container{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.modal_body1, .modal_body2, .modal_body3, .modal_body4{
+    width: 200px;
+    height:300px ;
+    margin: 0;
+}
+
+.modal_body1 li, .modal_body2 li{
+    font-size: 30px;
+    margin-bottom: 3rem ;
+    list-style: none;
+}
+
+
+.modal_body1 li, .modal_body3 li{
+    text-align: left;
+    font-size: 30px;
+    margin-bottom: 3rem ;
+    list-style: none;
+}
+
+
+.modal_body2 li ,.modal_body4 li{
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 3rem ;
+    list-style: none;
+}
+
+
+.modal_body3 li, .modal_body4 li{
+    font-size: 20px;
+    margin-bottom: 1rem ;
+}
+
+
+/*페이징*/
+
+.pagination {
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+}
+
+.pagination ul{
+    justify-content: center;
+    height: 50px;
+    line-height: 50px;
+    display:flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+.pagination li{
+    list-style: none;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 30%;
+    border: 1px solid #59606c;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.pagination li:hover, .pagination li.active{
+    background-color: #333f50;
+    color: white;
+}
+
+

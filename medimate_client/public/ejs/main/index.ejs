@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인화면</title>
+    <link rel="stylesheet" href="/css/main/index.css">
+    <link rel="stylesheet" href="/css/main/indexmodal.css">
+</head>
+
+<body>
+    <% if(!goodbye){ %>
+        <script>alert('그동안 감사했습니다.')</script>
+        <% }else if(!fail){ %>
+            <script>alert('로그인이 필요합니다.')</script>
+    <% }else if(!admin){ %>
+        <script>alert('로그인이 필요합니다.')</script>
+        <% } %>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-logo">
+            <h1><a style="text-decoration: none;" href="/main/index">MEDIMATE</a></h1>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ 
+                        if(adminCheck){%>
+                            <li><a style="text-decoration: none;" href="/admin/user">관리자페이지</a></li>
+                        <%}%>
+                        <li><a style="text-decoration: none;" href="/main/mypage/info">마이페이지</a></li>
+                        <li><a style="text-decoration: none;" href="/main/logout">로그아웃</a></li>
+                    <%}else{%>
+                        <li><a style="text-decoration: none;" href="/main/login">로그인</a></li>
+                        <li><a style="text-decoration: none;" href="/main/join">회원가입</a></li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+        
+
+    </header>
+    <div class="container">
+        <div class="content">
+            <!-- 약국 검색 -->
+            <div class="rr">
+                <div class="icon">
+                    <a class="dd" style="text-decoration: none;" href="/main/drugstore"><img class="ii" src="/img/pharmacy.png" alt=""> </a>
+                </div>
+            </div>
+            <!-- 약 검색 -->
+            <div class="rr">
+                <div class="icon">
+                    <a class="dd" style="text-decoration: none;" href="/main/medicine"><img class="ii" src="/img/pill.png" alt=""> </a>
+                </div>
+            </div>
+            <!-- 캘린더 -->
+            <div class="rr">
+                <div class="icon">
+                    <a class="dd" style="text-decoration: none;" href="/main/calendar"><img class="ii" src="/img/calender.png" alt=""> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--모달창 html 기본 display:none-->
+    <div class="modal">
+        <div class="modal_body">
+            
+            <h1 style="font-size: 50px;">알려드립니다!</h1>
+            <hr>
+            <br>
+            <br>
+            <h3>2023년 서울 열린데이터광장 공공데이터 활용 모바일 앱/웹 경진대회 출품작입니다.</h3>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4>검색 혹은 일반 사용자분들은 이점 참고 부탁드립니다!</h4>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button  class="modal_close2" type="button" style="background-color: darkgray; height: 4rem; width: 10rem; border-radius: 40%; cursor: pointer; font-size: 30px;">닫기 </button>
+
+        </div>
+        </div>
+    </div>
+
+    <script>
+
+    const modal = document.querySelector('.modal')
+        const btnCloseModal = document.querySelector('.modal_close2')
+        btnCloseModal.addEventListener('click', () => {
+            modal.style.display = 'none'
+        })
+    </script>
+
+
+</body>
+
+</html>

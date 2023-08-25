@@ -1,0 +1,176 @@
+/* 폰트 */
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
+*{
+    font-family: 'bitbit';
+}
+
+input {
+    width: auto;
+    height: 3rem;
+    font-size: large;
+    text-align: center;
+}
+/* 바디 */
+body {
+margin: 0;
+font-family: "medimate";  
+}
+
+/* 현준이가 전달해준 메인 바 코드 */
+li {
+    list-style: none;
+}
+
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+
+header ul, header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo  h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+input {
+    margin-left: 20px;
+    border: 1px solid #53d36b;
+}
+
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 왼쪽 사이드바 */
+.sidebar-left {
+    display: inline;
+    border: 3px solid #53d36b;
+    margin-top: 6rem;
+    width: 180px;
+    height: 20rem;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+}
+.sidebar-left-list   {
+    width: 100%;
+    padding: 10px;
+}
+.sidebar-left-list button {
+    font-family: 'bitbit';  
+    position: relative;
+    width: 80%;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    border-radius: 13%;
+}
+.sidebar-left-list li :hover  {
+    background-color: #53d36b;
+    color: white;
+    font-size: 17px;
+}
+
+/* 회원정보수정 소제목 */
+.small-title {
+    border-bottom: 3px solid #53d36b;
+    margin-bottom: 60px;
+}
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 내용 틀 (소제목~버튼) */
+.container-pw {
+    display: inline-block;
+    border: none;
+    padding: 20px;
+    width: 700px;
+    margin-top: 3rem;
+    margin-left: 5rem;
+}
+
+
+/* 회원정보수정 내용물 */
+.mem-oldpw, .mem-newpw, .mem-newpwagain {
+    display: flex;
+    text-align: left;
+    height: 25px;
+    margin-bottom: 30px;
+}
+.mem-newpw input{
+    margin-right: 10px;
+}
+
+/* 맨아래 버튼 */
+.button-pw {
+    text-align: right;
+    margin-top: 100px;
+    margin-right: 150px;
+}
+
+button {
+    margin-left: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #53d36b;
+    border: 1px solid  #53d36b;
+    border-radius: 10deg;
+    font-size: 17px;
+    border-radius: 13%;
+    text-align: center;
+    line-height: 17px;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+

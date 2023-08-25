@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- fullcalendar CDN -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+    <!-- fullcalendar 언어 CDN -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+    <link rel="stylesheet" href="/css/main/calendar2.css">
+    <style>
+        /* body 스타일 */
+        html,
+        body {
+            overflow: hidden;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+        .fc-header-toolbar {
+            padding-top: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    </style>
+</head>
+
+<body style="padding:30px;">
+
+
+
+    <header>
+        <div class="header-logo">
+            <h1>MEDIMATE</h1>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li class="header-pharm">약국</li>
+                <li class="header-medicine">약</li>
+                <li class="header-calendar">캘린더</li>
+                <li class="header-announcement">공지사항</li>
+            </ul>
+        </nav>
+        <div class="header-state">
+            <ul>
+                <% if(tokenCheck){ %>
+                    <li class="header-mypage">마이페이지</li>
+                    <li class="header-logout">로그아웃</li>
+                <%}else{%>
+                    <li class="header-login">로그인</li>
+                    <li class="header-join">회원가입</li>
+                <%}%>
+            </ul>
+        </div>
+    </header>
+
+
+
+
+    <!-- calendar 태그 -->
+    <div id='calendar-container'>
+        <div id='calendar'></div>
+    </div>
+
+    <div class="sidebar">
+        <div class="container">
+            <div class="sidebar-left">
+                <ul class="sidebar-left-list">
+                    <li id="addlist"><button class="addlist">복약 일정 추가</button></li>
+                    <li><button class="deletelist">복약 일정 삭제</button></li>
+                    <li><button class="adjustlist">복약 일정 수정</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--모달창 기본 none-->
+    <div class="modal">
+        <div class="modal_body">
+            <div class="modal_header"><img src="../drug/images/close_cursor.png" alt="닫기버튼"
+                    style="width:30px; height: 30px;">
+            </div>
+            <div class="modal_header2">
+                <h1>복약 일정추가</h1>
+            </div>
+            <div class="modal_container">
+                <div class="modal_body1">
+                    <li>복약 일정 제목</li>
+                    <li>복약 기간</li>
+                    <li>복약 설명</li>
+                    <li>알람 여부</li>
+                </div>
+
+                <div class="modal_body2">
+                    <li><button class="color_button">색상</button></li>
+                    <li><input type="date" class="start_date"><input type="date" class="end_date"></li>
+                    <li><input type="text" placeholder="설명을 입력하세요."
+                            style="border: none; font-size: 25px; text-align: end; width: 180px;"></li>
+                    <li><input type="checkbox" id="toggle" hidden>
+                        <label for="toggle" class="toggleSwitch">
+                            <span class="toggleButton"></span>
+                        </label>
+                    </li>
+                </div>
+            </div>
+            <div class="modal_container">
+                <div class="modal_body3">
+                    <button class="color_button" onclick="alert('저장완료')">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal2">
+        <div class="modal2_body">
+            <div class="modal2_header">색상</div>
+            <button class="red">빨강</button>
+            <button class="yellow">노랑</button>
+            <button class="blue">파랑</button>
+            <button class="green">초록</button>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        const events = JSON.parse('<%- JSON.stringify(datas) %>');
+
+        (function () {
+            $(function () {
+                // calendar element 취득
+                var calendarEl = $('#calendar')[0];
+                // full-calendar 생성하기
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    height: '700px', // calendar 높이 설정
+                    expandRows: true, // 화면에 맞게 높이 재설정
+                    slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+                    slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
+                    // 해더에 표시할 툴바
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    },
+                    initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+                    navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
+                    editable: true, // 수정 가능?
+                    nowIndicator: true, // 현재 시간 마크
+                    selectable: true, // 달력 일자 드래그 설정가능
+                    dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
+                    locale: 'ko', // 한국어 설정
+                    eventAdd: function (obj) { // 이벤트가 추가되면 발생하는 이벤트
+                        console.log(obj);
+                    },
+                    // 이벤트 
+                    events: events,
+                    eventClick:function(event) {
+                        let action = confirm('내용을 수정 하시겠습니까?')
+                        if(action){
+                            let title = prompt('수정 내용:');
+                            if(title){
+                                location.href=`/main/calendar/update/${event.event._def.extendedProps.C_NUM}?C_TITLE=${title}`
+                            }else{
+                                alert('수정에 실패 했습니다. 내용을 입력하세요.')
+                            }
+                        } else{
+                            action = confirm('일정을 삭제 하시겠습니까?')
+                            if(action){
+                                location.href=`/main/calendar/remove/${event.event._def.extendedProps.C_NUM}`
+                            }
+                        }
+                    },
+                    select: function (arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+                        var title = prompt('내용 입력:');
+                        if (title) {
+                            location.href=`/main/calendar/insert?C_TITLE=${title}&C_START=${arg.start}&C_END=${arg.end}`
+                        } else{
+                            alert('등록에 실패 했습니다. 내용을 입력하세요.')
+                        }
+                        calendar.unselect()
+                    }
+                });
+                // 캘린더 랜더링
+                calendar.render();
+            });
+        })();
+    </script>
+
+    <script src="/js/main/header.js"></script>
+    <script src="/js/main/calendar.js"></script>
+</body>
+
+</html>

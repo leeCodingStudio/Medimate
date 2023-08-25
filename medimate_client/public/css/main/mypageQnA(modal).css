@@ -1,0 +1,48 @@
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
+*{
+    font-family: 'bitbit';
+}
+body {
+    font-size: 17px;
+    width: 330px;
+    height: 200px;
+    font-family: "medimate";  
+    margin: 0 auto;
+}
+
+
+/* X버튼 */
+.xbutton-qnamd img{
+    margin-left: 300px;
+    float: right;
+}
+
+/* 맨아래 버튼 */
+.button-qnamd {
+    margin-top: 30px;
+    text-align: right;
+}
+
+button {
+    margin-left: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #53d36b;
+    border: 1px solid  #53d36b;
+    border-radius: 10deg;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 13%;
+    text-align: center;
+    line-height: 17px;
+    padding: 10px;
+}
+
+input {
+    margin-left: 20px;
+    border: 1px solid #53d36b;
+}

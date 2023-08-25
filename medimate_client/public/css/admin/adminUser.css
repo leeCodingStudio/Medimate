@@ -1,0 +1,10 @@
+.modal-box{
+    width: 300px;
+    height: 400px;
+}
+
+.submit-btn{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-around;
+}

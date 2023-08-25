@@ -1,0 +1,360 @@
+/* 폰트 */
+@font-face {
+    font-family: 'bitbit';
+    src: url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'), url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2');
+}
+
+
+* {
+    font-family: 'bitbit';
+}
+
+/* 바디 */
+body {
+    margin: 0;
+    font-family: "bitbit";
+}
+
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+header ul,
+header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로고  a태그 */
+.logo-a {
+    color: #53d36b;
+    font-size: 32px;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-a:hover {
+    color: #53d36b;
+    text-decoration: none;
+}
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+/* 로그인 회원가입 a태그들 */
+.st:link {
+    color: #000;
+    text-decoration: none;
+}
+
+.st:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+.st:hover {
+    color: #69f082;
+}
+
+
+
+/*검색 헤더 */
+
+/*검색 헤더 */
+
+.search_drug {
+    position: flex;
+    flex-wrap: nowrap;
+    height: 3.8rem;
+    letter-spacing: .1rem;
+    line-height: 3.8rem;
+    padding: 0 3rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: darkgrey;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    width: 80%;
+    margin: 3rem auto;
+    align-items: center;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 15px;
+}
+
+.search_drug select,
+.search_drug input {
+    display: inline-block;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0 35px;
+    font-size: 1rem;
+    color: black;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 178px;
+    cursor: pointer;
+}
+
+.search_drug>button {
+    display: inline-block;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0 35px;
+    font-size: 1rem;
+    background-color: #495f74;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 178px;
+    cursor: pointer;
+}
+
+/*검색 창 */
+
+.abc-wrap {
+    width: 100%;
+    height: 33rem;
+    direction: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: flex;
+}
+
+.abc {
+    width: 100%;
+    height: 33rem;
+    direction: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: flex;
+}
+
+.abc p {
+    width: 10rem;
+    text-align: center;
+    margin-left: 1.4rem;
+}
+
+.abc img {
+    width: 13rem;
+    height: 10rem;
+}
+
+.container1 {
+    margin-left: 15%;
+    width: 100%;
+    display: flex;
+    width: 30%;
+    margin-top: 3rem;
+    font-size: 0.7rem;
+}
+
+.container2 {
+    margin-left: 15%;
+    width: 100%;
+    display: flex;
+    width: 30%;
+    margin-top: 3rem;
+    font-size: 0.7rem;
+}
+
+.drug-info {
+    padding: 0.5rem;
+    border: 1px solid #53d36b;
+    width: 13rem;
+    cursor: pointer;
+    color: #53d36b;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    flex: auto;
+    font-size: 0.8rem;
+}
+
+
+.btn_detail>button {
+    color: white;
+    background-color: #53d36b;
+}
+
+.btn_detail2 {
+    color: white;
+    background-color: #53d36b;
+}
+
+/* 모달창 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 맨아래 버튼 */
+.modal {
+    border: 2px solid #53d36b;
+    border-radius: 30px;
+    direction: flex;
+    background-color: white;
+    display: none;
+    /* position: absolute;
+    left: 25%;
+    top: 20%; */
+    width: 60rem;
+    height: 25rem;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+    z-index: 100;
+}
+
+
+
+.modal img {
+    text-align: left;
+    width: 20rem;
+    height: 20rem;
+}
+
+.modal_container {
+    border: 2px solid #53d36b;
+    border-radius: 30px;
+    padding: 5rem;
+    display: flex;
+    background-color: white
+}
+
+.modal_content {
+    text-align: left;
+    width: 30rem;
+    display: flex;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_title {
+    margin-left: 5rem;
+    width: 4rem;
+    font-size: 1rem;
+}
+
+.content_content {
+    margin-left: 5rem;
+    width: 14rem;
+    font-size: 1.04rem;
+}
+
+.xbtn {
+    cursor: pointer;
+    width: 3rem;
+    height: 5rem;
+    text-align: right;
+    font-size: 2rem;
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* 페이지 이동 버튼 */
+.page-wrap {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.pagination {
+    font-size: 14px;
+    position: absolute;
+    left: 92%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+}
+
+.pagination ul {
+    justify-content: center;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+.pagination li {
+    list-style: none;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 30%;
+    border: 1px solid #59606c;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.pagination li:hover,
+.pagination li.active {
+    background-color: #333f50;
+    color: white;
+}

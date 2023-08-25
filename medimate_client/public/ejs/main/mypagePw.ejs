@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/mypagePw.css">
+    <title>mypagePw</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                    <%}else{%>
+                        <li class="header-login">로그인</li>
+                        <li class="header-join">회원가입</li>
+                    <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <div class="sidebar-left">
+            <ul class="sidebar-left-list">
+                <li><button onclick="gopageInfo()">회원번호 수정</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopagePw()">비밀번호 변경</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageQnA()">문의하기</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageWithdrawal()">회원 탈퇴</button></li>
+            </ul>
+        </div>
+
+
+<form action="/main/mypage/pw" method="post">
+    <div class="container-pw">
+
+        <div class="small-title">
+            <h2>비밀번호 변경</h2>
+        </div> 
+        <div class="mem-pw">
+            <div class="mem-oldpw">
+                <p> 이전 암호 </p>
+                <p style="color:red"> * </p>
+                <p><input type="password" style="margin-left:37px;" name="OLD_PW" required></p>
+            </div>
+            <div class="mem-newpw">
+                <p> 새 암호 </p>
+                <p style="color:red"> * </p>
+                <p><input type="password" name="U_PW" style="margin-left:50px;" required> (4-15자리 영문, 숫자로 입력해주세요) </p>
+            </div>
+            <div class="mem-newpwagain">
+                <p> 새 암호 확인 </p>
+                <p style="color:red"> * </p>
+                <p><input type="password" required></p>
+            </div>
+        </div>
+
+        <div class="button-pw">
+            <button onclick="">뒤로가기</button>
+            <button type="submit" onclick="">저장</button>
+        </div>
+    </div>
+</form>
+    </div>
+    <script type="text/javascript">
+        function gopageInfo() {
+            location.href = "/main/mypage/info";    
+        }
+        function gopagePw() {
+            location.href = "/main/mypage/pw";    
+        }
+        function gopageQnA() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageShare() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageWithdrawal() {
+            location.href = "/main/mypage/withdrawal";    
+        }
+        </script>
+        <script src="/js/main/header.js"></script>
+</body>
+
+</html>
+<% } %>

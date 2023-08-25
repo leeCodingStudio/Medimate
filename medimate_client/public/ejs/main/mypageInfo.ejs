@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/mypageInfo.css">
+    <link rel="stylesheet" href="/css/main/mypageInfo.js">
+    <title>mypageInfo</title>
+    <% if(typeof message !=='undefined' ){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                        <%}else{%>
+                            <li class="header-login">로그인</li>
+                            <li class="header-join">회원가입</li>
+                            <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <div class="sidebar-left">
+            <ul class="sidebar-left-list">
+                <li><button onclick="gopageInfo()">회원번호 수정</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopagePw()">비밀번호 변경</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageQnA()">문의하기</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageWithdrawal()">회원 탈퇴</button></li>
+            </ul>
+        </div>
+        <div class="container-info">
+
+            <div class="small-title">
+                <h2>회원정보 수정</h2>
+            </div>
+
+            <form action="/main/mypage/info" method="post">
+                <div class="mem-info">
+                    <div class="mem-id">
+                        <p> 아이디 <input type="text" name="U_ID" value="<%= userlist.U_ID%>" style="margin-left: 10px;"
+                                disabled> </p>
+                        <p>이름 <input type="text" name="U_NAME" value="<%= userlist.U_NAME%>" style="margin-left: 10px;"
+                                disabled></p>
+                    </div>
+                    <div class="mem-email">
+                        <p> 이메일 <input type="text" name="U_EMAIL" size="56" style="margin-left: 10px;" value="<%= userlist.U_EMAIL%>"
+                                required></p>
+                    </div>
+                    <div class="mem-addrs">
+                        <p> 주소 <input type="text" name="U_ADDRESS1" id="jibunAddress" value="<%= userlist.U_ADDRESS1%>"
+                                size="30" style="margin-left: 25px;"></p>
+
+
+                        <p> 우편번호 <input type="text" name="U_ZIP_CODE" value="<%= userlist.U_ZIP_CODE%>" size="8.5"
+                                id="zonecode"></p>
+                        <p><button type="button" onclick="test1234()"> 검색 </button></p>
+                    </div>
+                    <p><input class="mem-addrs-detail" type="text" name="U_ADDRESS2" value="<%= userlist.U_ADDRESS2%>"
+                            size="56" style="margin-left: 55px;"></p>
+                    <div class="mem-hp">
+                        <p> 연락처 <input type="text" size="56" name="U_HP" style="margin-left: 10px;" value="<%= userlist.U_HP%>"
+                                required></p>
+                    </div>
+                </div>
+
+                <div class="button-info">
+                    <button type="submit"> 저장 </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function test1234() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    const zipcode = document.getElementById('zonecode')
+                    const jibunAddress = document.getElementById('jibunAddress')
+                    zipcode.value = data['zonecode']
+                    jibunAddress.value = data['jibunAddress']
+                }
+            }).open()
+        }
+    </script>
+    <script type="text/javascript">
+        function gopageInfo() {
+            location.href = "/main/mypage/info";
+        }
+        function gopagePw() {
+            location.href = "/main/mypage/pw";
+        }
+        function gopageQnA() {
+            location.href = "/main/mypage/qna";
+        }
+        function gopageShare() {
+            location.href = "/main/mypage/qna";
+        }
+        function gopageWithdrawal() {
+            location.href = "/main/mypage/withdrawal";
+        }
+    </script>
+    <script src="/js/main/header.js"></script>
+</body>
+
+</html>
+<% } %>

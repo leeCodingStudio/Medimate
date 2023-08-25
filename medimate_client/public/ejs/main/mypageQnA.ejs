@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/mypageQnA.css">
+    <title>mypageQnA</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                    <%}else{%>
+                        <li class="header-login">로그인</li>
+                        <li class="header-join">회원가입</li>
+                    <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+
+        <div class="sidebar-left">
+            <ul class="sidebar-left-list">
+                <li><button onclick="gopageInfo()">회원번호 수정</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopagePw()">비밀번호 변경</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageQnA()">문의하기</button></li>
+                <br>
+                <br>
+                <li><button onclick="gopageWithdrawal()">회원 탈퇴</button></li>
+            </ul>
+        </div>
+    
+        <div class="container-qna">
+
+            <div class="small-title">
+                <h2>문의하기</h2>
+            </div>
+
+            <div class="list-qna-middle">
+                <div class="list-qna-content">
+                    <div class="content-title">
+                        <p class="list-qna-num">번호</p>
+                        <p class="list-qna-title">제목</p>
+                        <p class="list-qna-date">일자</p>
+                        <p class="list-qna-res">답변여부</p>
+                    </div>
+                    <% qnaList.forEach(data=> { %>
+                    
+                    <div class="content2" onclick="modal3('<%= JSON.stringify(data) %>')">
+                        <p class="list-qna" id="data"><%= data.Q_NUM %></p>
+                        <p class="list-qna" id="data"><%= data.Q_TITLE.slice(0,3) %>..</p>
+                        <p class="list-qna" id="data"><%= data.createdAt.slice(0,10)%></p>
+                        <% if(!data.Q_ANSWER){ %>
+                            <p class="list-qna"><i class="fa-solid fa-xmark"></i>
+                            </p>
+                            <% }else{ %>
+                                <p class="list-qna"><i class="fa-solid fa-check"></i>
+                                </p>
+                                <%}%>
+                    </div>
+                    <% })%>
+                </div>
+
+                <div class="list-qna-button">
+                    <br>
+                    <br>
+                    <button type="button" onclick="modalOpen();">문의 추가</button>
+                </div>
+
+            </div>
+
+            <div class="pagination">
+                <ul>
+                    <% if (page > 1) { %>
+                        <li onclick="page('<%= page - 1 %>')"><</li>
+                    <% } %>
+                    
+                    <% for (let i = startPage; i <= endPage; i++) { %>
+                    <% if (page==i) { %>
+                        <li class="active"><%= i %></li>
+                    <% } else { %>
+                        <li onclick="page('<%= i %>')"><%= i %></li>
+                    <% } %>
+                    <% } %>
+                    <% if (page < totalPages) { %>
+                        <li onclick="page('<%= parseInt(page) + 1 %>')">></li>
+                    <% } %>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal2">
+        <div class="modal_container2">
+            <div class="small_modal_title">
+                <h2 style="font-size:  30px; display: inline-block;" >문의 내용</h2>
+                <button class="modal_close2"  type="button" style="background-color: #53d36b;">닫기 </button>
+            </div>
+            <div class="modal_body">
+                <p><input type="text" id="modalQtitle" name="Q_TITLE" style="width:300px; height:130px; border: 1px solid #53d36b" readonly></p>
+                <h2 style="font-size:  30px;" >답변</h2>
+                <p><input type="text" id="modalQcontent" name="Q_CONTENT" style="width:300px; height:130px; border: 1px solid #53d36b" readonly></p>
+            </div>
+        </div>
+</div>
+
+
+<!--모달창 html 기본 display:none-->
+<form action="/main/mypage/qna" method="post">
+    <input type="hidden">
+    <div class="modal">
+        <div class="modal_container">
+            <div class="small_modal_title">
+                <h2 style="font-size:  30px;">문의하기</h2>
+            </div>
+            <br>
+            <div class="modal_body">
+                <p>문의내용</p>
+                <p><input type="text" name="Q_TITLE" style="width:300px; height:130px; border: 1px solid #53d36b" required></p>
+            </div>
+
+            <div class="modal_btn">
+                <button type="submit"> 문의 등록 </button>
+                <button class="modal_close" type="button" onclick="modalClose();" style="background-color: #53d36b;"> 취소
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <script>
+        const modal = document.querySelector('.modal')
+        const btnOpenModal = document.querySelector('.list-qna-button')
+        const btnCloseModal = document.querySelector('.modal_close')
+
+        btnOpenModal.addEventListener('click', () => {
+            modal.style.display = 'block'
+        })
+
+        btnCloseModal.addEventListener('click', () => {
+            modal.style.display = 'none'
+        })
+        const conetent = document.querySelectorAll('.content2')
+        const modal2 = document.querySelector('.modal2')
+        const btnCloseModal2 = document.querySelectorAll('.modal_close2')
+
+        conetent.forEach(data => {
+            data.addEventListener('click', () =>{
+                modal2.style.display='block'
+            })
+        })
+
+        btnCloseModal2.forEach(data => {
+            data.addEventListener('click', () => {
+                modal2.style.display = 'none'
+            
+            })
+        })
+
+    </script>
+    <script type="text/javascript">
+        function gopageInfo() {
+            location.href = "/main/mypage/info";    
+        }
+        function gopagePw() {
+            location.href = "/main/mypage/pw";    
+        }
+        function gopageQnA() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageShare() {
+            location.href = "/main/mypage/qna";    
+        }
+        function gopageWithdrawal() {
+            location.href = "/main/mypage/withdrawal";    
+        }
+        </script>
+
+    <script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+    <script src="/js/main/header.js"></script>
+    <script src="/js/main/qnamodal.js"></script>
+
+
+</body>
+
+</html>
+<% } %>

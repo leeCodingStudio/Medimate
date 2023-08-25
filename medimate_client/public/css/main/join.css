@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'bitbit';
+    src: url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'), url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2');
+}
+
+* {
+    font-family: 'bitbit';
+}
+
+input{
+    height: 25px;
+}
+
+
+body {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    
+}
+/* 헤더 */
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+header ul,
+header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고  a태그 */
+.logo-a{
+    color: #53d36b;
+    font-size: 32px;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-a:hover {
+    color: #53d36b;
+    text-decoration: none;
+}
+
+/* 로그인 회원가입 a태그들 */
+.st:link {
+    color: #000;
+    text-decoration: none;
+}
+
+.st:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+.st:hover {
+    color: #69f082;
+}
+
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+
+/* 회원가입 박스 */
+.box {
+    text-align: right;
+    width: 40rem;
+    height: 55rem;
+    margin: 3rem auto;
+    flex-direction: column;    /* 내부 요소들 가운데에 정렬하기 */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+}
+.join-n{
+    font-size: 30px;
+    margin-bottom: 50px;
+    color: #53d36b;
+    text-align: center;
+}
+.join-content{
+    margin-right: 5%;
+    display: inline-block;
+    width: 20rem;
+    flex-direction: column;
+}
+.join-content input{
+    margin-top: 1%;
+}
+.address-search{
+    margin-left: 30%;
+}
+.small-box{
+    margin-right: 22%;
+}
+form {
+    text-align: right;
+}
+
+form input {
+    padding: 7px;
+    margin: 10px;
+    border-radius: 7px;
+    display: inline-block;
+}
+.search-btn{
+    display: inline-block;
+    text-align: left;
+}
+.search {
+    width: 50px;
+    border: solid 1px #53d36b ;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.address-search {
+    display: flex;
+    align-items: center;
+}
+
+.btn, .kakao-btn {
+    border-radius: 7px;
+    border: 0;
+    width: 150px;
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+
+    cursor: pointer;
+}
+
+
+.btn {
+    margin-top: 10%;
+    height: 2.15rem;
+    background-color: #53d36b;
+    color: white;
+    direction: flex;
+    justify-content: center;
+    margin-right:37%;
+}
+
+.kakao-btn img{
+    border: 0;
+    width: 150px;
+    font-size: 18px;
+    padding: 5px;
+
+}
+.kakao-btn{
+    margin-left:38%;
+}

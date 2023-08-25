@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/findId.css">
+    <title>mypagePw</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else { %>
+    <% if(mailId){%>
+        <script>
+            alert('해당 이메일로 아이디를 전송했습니다.')
+        </script>
+        <% } %>
+    <% if(mailPw){%>
+        <script>
+            alert('해당 이메일로 임시비밀번호를 전송했습니다.')
+        </script>
+        <% } %>
+</head>
+
+<body>
+    
+    <div>
+        <header>
+            <div class="header-logo">
+                <h1>MEDIMATE</h1>
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li class="header-pharm">약국</li>
+                    <li class="header-medicine">약</li>
+                    <li class="header-calendar">캘린더</li>
+                    <li class="header-announcement">공지사항</li>
+                </ul>
+            </nav>
+            <div class="header-state">
+                <ul>
+                    <% if(tokenCheck){ %>
+                        <li class="header-mypage">마이페이지</li>
+                        <li class="header-logout">로그아웃</li>
+                    <%}else{%>
+                        <li class="header-login">로그인</li>
+                        <li class="header-join">회원가입</li>
+                    <%}%>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        
+        <div class="findId">
+            <h2>아이디 찾기</h2>
+            <form action="/main/find/id" method="post">
+                <p class="findId_name">이름<input type="text" name="U_NAME" required></p>
+                <p>이메일<input type="email" name="U_EMAIL" required></p>
+                <div class="find_btn"><button>확인</button></div>
+            </form>
+        </div>
+
+        <div class="findPw">
+            <h2>비밀번호 찾기</h2>
+            <form action="/main/find/pw" method="post">
+                <p class="findId_name">이름<input type="text" name="U_NAME" required></p>
+                <p>아이디<input type="text" name="U_ID" required></p>
+                <p>이메일<input type="email" name="U_EMAIL" required></p>
+                <div class="find_btn"><button>확인</button></div>
+            </form>
+        </div>
+        
+        <script src="/js/main/header.js"></script>
+</body>
+
+</html>
+<% } %>

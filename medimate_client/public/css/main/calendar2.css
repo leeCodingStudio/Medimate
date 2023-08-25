@@ -1,0 +1,395 @@
+@font-face {
+    font-family: 'bitbit';
+    src: url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'), url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2');
+}
+
+* {
+    font-family: 'bitbit';
+}
+
+body {
+    margin: 0;
+    height: 1000px;
+}
+
+li {
+    list-style: none;
+}
+
+/* 헤더 */
+
+header {
+    width: 90%;
+    height: 80px;
+    border: 0;
+    box-shadow: 2px 3px 5px 0 rgb(196, 191, 191);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 5px 30px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    font-weight: 200;
+}
+
+/* header {
+    width: 100%;
+    padding: 5px 100px;
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    box-shadow: 0 0 5px 0 rgb(155, 155, 155);
+    z-index: 100;
+} */
+
+
+header ul,
+header h1 {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    line-height: 80px;
+}
+
+header li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 로고 */
+.header-logo h1 {
+    cursor: pointer;
+    color: #53d36b;
+}
+
+/* 리스트 */
+.header-nav {
+    font-size: 24px;
+}
+
+.header-nav li {
+    margin: 0 35px;
+}
+
+
+/* 로그인/회원가입 */
+.header-state li {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+
+/*캘린더*/
+
+#calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+
+}
+
+#calendar {
+    width: 100%;
+}
+
+/*사이드바*/
+.sidebar {
+    display: none;
+    width: 180px;
+    height: 300px;
+    position: fixed;
+    bottom: 400px;
+    left: 50px;
+    border: 3px solid #53d36b;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    margin-top: 15rem;
+    width: 180px;
+    height: 15rem;
+    margin-right: 3rem;
+}
+
+.sidebar-left {
+    display: inline;
+    margin-top: 15rem;
+    width: 180px;
+    height: 15rem;
+    margin-right: 3rem;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+
+}
+
+.sidebar-left-list {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar-left-list button {
+    font-family: "medimate";
+    position: relative;
+    right: 10px;
+    width: 80%;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    font-weight: bolder;
+    border-radius: 13%;
+    cursor: pointer;
+    z-index: inherit;
+}
+
+.sidebar-left-list li :hover {
+    background-color: #53d36b;
+    color: white;
+    font-size: 17px;
+    font-weight: bolder;
+}
+
+#calendar-container {
+    cursor: pointer;
+}
+
+.add_list {
+    cursor: pointer;
+}
+
+
+/*모달창*/
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.modal.show {
+    display: block;
+}
+
+/*모달 창 전체 */
+.modal_body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 400px;
+    height: 600px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/*닫기 버튼*/
+.modal_header {
+    width: 400px;
+    height: 50px;
+    text-align: end;
+    cursor: pointer;
+}
+
+.modal_header2 {
+    text-align: center;
+}
+
+.modal_container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.modal_body1 {
+
+    width: 150px;
+    height: 400px;
+    margin: 0;
+}
+
+.modal_body2 {
+    width: 250px;
+    height: 400px;
+    margin: 0;
+
+}
+
+.modal_body2 {
+    margin-bottom: 3rem;
+}
+
+.modal_body3 {
+
+    width: 100%;
+}
+
+.modal_body4 {
+    background-color: pink;
+}
+
+.modal_body1 li,
+.modal_body2 li {
+    font-size: 25px;
+    margin-bottom: 6rem;
+    list-style: none;
+}
+
+.modal_body2 li{
+    text-align: end;
+}
+
+.color_button{
+    display: inline-block;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0 10px;
+    font-size: 2rem;
+    background-color: #53d36b;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 15px;
+    cursor: pointer;
+    
+}
+
+.start_date .end_date{
+    background-color: #53d36b;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    min-width: 15px;
+    cursor: pointer;
+}
+
+/*토글 버튼*/
+
+.toggleSwitch {
+    width: 100px;
+    height: 50px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+}
+
+.toggleSwitch .toggleButton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #53d36b;
+    
+}
+
+#toggle:checked~.toggleSwitch {
+    background: #53d36b;
+}
+
+#toggle:checked~.toggleSwitch .toggleButton {
+    left: calc(100% - 44px);
+    background: #fff;
+}
+
+.toggleSwitch,
+.toggleButton {
+    transition: all 0.2s ease-in;
+}
+
+.toggleSwitch{
+    display: fixed;
+    left: 150px;
+}
+
+
+/*모달창 2 색상*/
+
+.modal2{
+    background-color: #53d36b;
+    display: none;
+    
+}
+
+.modal2_body {
+    position: absolute;
+    top: 30%;
+    left: 70%;
+
+    width: 200px;
+    height: 150px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 500;
+}
+
+.modal2_header{
+    margin-bottom:2rem;
+    font-size: large;
+}
+
+
+.red, .yellow, .green, .blue {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 80px;
+    height: 40px;
+}
+
+.red {
+    border: 1px solid rgb(255,153,153);
+    background-color: rgb(255,153,153);
+    border-radius: 13%;
+}
+
+.yellow {
+    border: 1px solid rgb(255,255,0) ;
+    background-color: rgb(255,255,0);
+    border-radius: 13%;
+}
+
+.green{
+    border: 1px solid rgb(153,255,153) ;
+    background-color: rgb(153,255,153);
+    border-radius: 13%;
+}
+
+.blue {
+    border: 1px solid rgb(153,204,255) ;
+    background-color: rgb(153,204,255);
+    border-radius: 13%;
+}

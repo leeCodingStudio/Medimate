@@ -1,0 +1,26 @@
+.content2{
+    cursor: pointer;
+}
+
+.modal-box{
+    width: 500px;
+    height: 450px;
+}
+
+.question, .answer {
+    width: 100%;
+    height: 200px;
+    border-radius: 30px;
+    border: 1px solid #adadad;
+    padding: 10px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+}
+.answer-text{
+    border: 0;
+}
+
+.submit-btn{
+    display: flex;
+    justify-content: end;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/adminAncm.css">
+    <title>공지사항3</title>
+    <% if(typeof message !== 'undefined'){%>
+        <script>
+            alert("<%= message %>");
+            history.back();
+        </script>
+        <% }else{ %>
+</head>
+<body>
+    <header>
+        <i class="fa-solid fa-bars"></i>
+        관리자 홈
+    </header>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;"><h1>MEDIMATE</h1></div>
+        <ul>
+            <li class="nav-user"><i class="fa-solid fa-users"></i> 회원 관리</li>
+            <li class="nav-drugstore"><i class="fa-solid fa-house-medical"></i> 약국 관리</li>
+            <li class="nav-medicine"><i class="fa-solid fa-prescription-bottle-medical"></i> 약품 관리</li>
+            <li class="nav-announcement active"><i class="fa-solid fa-scroll"></i> 공지 사항</li>
+            <li class="nav-QnA"><i class="fa-solid fa-comments"></i> 문의 사항</li>
+        </ul>
+    </nav>
+
+    <main>
+        <form action="/admin/announcement" method="post" enctype="multipart/form-data" >
+        <article class="title">
+            <h2>공지사항 작성</h2>
+        </article>
+        <article class="content-header">
+            <div>
+                <div class="content-title">
+                    <span>제목 </span><input type="text" placeholder="제목을 입력하세요" name ='A_TITLE'required>
+                </div>
+                <div class="content-writer">
+                </div>
+            </div>
+            <div>
+                <input type="file">
+                <button class="black-btn">완료</button>
+            </div>
+        </article>
+        <article class="content-text">
+            <textarea name="A_CONTENT" placeholder="내용을 입력하세요"></textarea>
+        </article>
+    </main>
+</form>
+
+
+
+    <script src="https://kit.fontawesome.com/1bf31ed49f.js" crossorigin="anonymous"></script>
+    <script src="/js/admin/admin.js"></script>
+</body>
+</html>
+<% } %>
