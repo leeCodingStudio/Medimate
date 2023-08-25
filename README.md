@@ -1,5 +1,7 @@
 # Medimate
 - [Notion 포트폴리오](https://morning-collarbone-330.notion.site/Medimate-Node-js-30fe614feb864b24a8abe64a4f240d1e)
+- [Client Git](https://github.com/leeCodingStudio/medimate_client)
+- [Server Git](https://github.com/leeCodingStudio/medimate_server)
 ---
 
 ### 개발 범위
