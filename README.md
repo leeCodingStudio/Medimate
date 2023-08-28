@@ -50,6 +50,8 @@
 
 ### 스크린샷
 
+---
+
 ![image](https://github.com/leeCodingStudio/Medimate/assets/115694780/f7f98966-be23-478a-9336-d4bf1ee81174)
 ![image](https://github.com/leeCodingStudio/Medimate/assets/115694780/8e8cee74-83dd-43d7-bbe2-f6dfcb997ecd)
 ![image](https://github.com/leeCodingStudio/Medimate/assets/115694780/4bd70681-ebe2-4da1-b08a-15aa7624dcde)
